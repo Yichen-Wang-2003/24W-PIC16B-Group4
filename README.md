@@ -3,7 +3,7 @@
 
 This is the repo for 24W PIC16B group project. \
 . O . \
-. O . \
+. O X \
 . . X \
 
 
