@@ -1,7 +1,8 @@
 
 # 24W-PIC16B-Group4
-Members: Yichen Wang, Xipeng Du, Manshu Huang \n
-**NOTE: ALL modifications/push/commit by user name called Ning Sam or Xinnianrujin refer to the student whose name is Yichen Wang.**
+Members: Yichen Wang, Xipeng Du, Manshu Huang 
+
+### **NOTE: ALL modifications/push/commit by user name called Ning Sam or Xinnianrujin refer to the student whose name is Yichen Wang.**
 
 Recurrent Neural Networks Intro:
 
