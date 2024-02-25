@@ -1,6 +1,7 @@
 
 # 24W-PIC16B-Group4
-
+Members: Yichen Wang, Xipeng Du, Manshu Huang
+**NOTE: ALL modifications/push/commit by user name called Ning Sam or Xinnianrujin refer to the student whose name is Yichen Wang. **
 Recurrent Neural Networks Intro:
 
 Recurrent Neural Networks (RNN) introduces “a transition weight to send information over time”, where the hidden layers act “as an internal storage of the information captured in the earlier stages” (Zouaoui et al. 2023). Two powerful RNN models, LSTM and GRU, perform ideal results in application domains with time series.
