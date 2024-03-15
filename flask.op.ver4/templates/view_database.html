@@ -1,0 +1,35 @@
+<!-- view_database.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Database</title>
+</head>
+<body>
+    <h1>Database: {{ filename }}</h1>
+    {% for table_name, table_data in tables.items() %}
+        <h2>Table: {{ table_name }}</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for column in table_data.columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data.itertuples(index=False) %}
+                    <tr>
+                        {% for value in row %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    {% endfor %}
+</body>
+</html>
