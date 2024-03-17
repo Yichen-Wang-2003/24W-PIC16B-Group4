@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Uploaded Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+        .btn-group .btn {
+            margin: 0 5px;
+            font-size: 24px;
+        }
+        table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Uploaded Database</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">File Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr>
+                    <td>{{ file }}</td>
+                    <td><a href="{{ url_for('view_database', filename1=file, filename2=file) }}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <a href="/" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+</body>
+</html>

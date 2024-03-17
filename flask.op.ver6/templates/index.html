@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Models for Option Pricing Evaluation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ADD8E6; /* Change background color to light blue */
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px; /* Expand the entire container */
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px; /* Increase padding */
+            border-radius: 20px; /* Rounded corners for border */
+        }
+        .btn-group {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .btn-group .btn {
+            margin: 0 10px; /* Increase button spacing */
+            font-size: 36px; /* Enlarge font size */
+        }
+        h2 {
+            font-size: 60px; /* Enlarge title font size */
+        }
+        p {
+            font-size: 28px; /* Enlarge paragraph font size */
+        }
+        .custom-file-label {
+            font-size: 24px; /* Enlarge file upload button text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neural Network Models for Option Pricing Evaluation</h1> <!-- Modify main title -->
+        <form method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file1" name="file1" required>
+                    <label class="custom-file-label" for="file1" id="file1-label">Upload X</label> <!-- Modify upload button text -->
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file2" name="file2" required>
+                    <label class="custom-file-label" for="file2" id="file2-label">Upload Y</label> <!-- Modify upload button text -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload & Save</button>
+        </form>
+        {% if upload_success %}
+            <h2>Successful!</h2> <!-- Upload success message -->
+        {% endif %}
+        <h2>Actions</h2>
+        <div class="btn-group" role="group" aria-label="Actions">
+            <a href="{{ url_for('view_database') }}" class="btn btn-info">View Database</a> <!-- Modify button style -->
+            <a href="{{ url_for('show_prediction') }}" class="btn btn-info">View Prediction</a> <!-- Modify button style -->
+        </div>
+        <div>
+            {% if prediction is not none %}
+                <h2>Evaluation Results:</h2>
+                <p>Test Loss: {{ test_loss }}</p>
+                <p>MSE Loss: {{ mse_loss }}</p>
+                <p>RMSE Loss: {{ rmse_loss }}</p>
+                <p>R2 Score: {{ r2_score }}</p>
+                <iframe src="{{ plot }}" width="100%" height="500px"></iframe>
+            {% endif %}
+        </div>
+        <div>
+            {% if view_database %}
+                <h2>Database Contents:</h2>
+                <!-- Database content goes here -->
+            {% endif %}
+            {% if show_prediction %}
+                <h2>Prediction Results:</h2>
+                <!-- Prediction results go here -->
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to change label text to file name after successful file upload
+        document.getElementById('file1').addEventListener('change', function() {
+            var fileName = this.files[0].name;
+            document.getElementById('file1-label').innerText = fileName;
+        });
+
+        document.getElementById('file2').addEventListener('change', function() {
+            var fileName = this.files[0].name;
+            document.getElementById('file2-label').innerText = fileName;
+        });
+    </script>
+</body>
+</html>

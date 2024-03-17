@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Models for Option Pricing Evaluation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center; 
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 20px; 
+            border-radius: 10px; 
+        }
+        .btn-group {
+            margin-top: 20px; 
+            margin-bottom: 20px; 
+        }
+        .btn-group .btn {
+            margin: 0 5px; 
+            font-size: 32px; 
+        }
+        h2 {
+            font-size: 48px; 
+        }
+        p {
+            font-size: 24px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Neural Network Models for Option Pricing Evaluation</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file" name="file" required>
+                    <label class="custom-file-label" for="file">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <h2>Actions</h2>
+        <div class="btn-group" role="group" aria-label="Actions">
+            <a href="{{ url_for('view_uploaded_database') }}" class="btn btn-secondary">View Uploaded Database</a>
+            <a href="{{ url_for('show_prediction') }}" class="btn btn-secondary">Predict</a>
+        </div>
+        {% if prediction is not none %}
+            <h2>Prediction Result</h2>
+            <p>Prediction: {{ prediction }}</p>
+            <iframe src="{{ plot }}" width="100%" height="500px"></iframe>
+        {% endif %}
+    </div>
+</body>
+</html>
