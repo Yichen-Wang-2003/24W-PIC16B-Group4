@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Uploaded Database</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover; /* Ensure the background image covers the entire viewport without repeating. */
+            background-repeat: no-repeat; /* Prevents the background image from repeating. */
+            padding-top: 20px; /* Adds space on the top of the page. */
+            display: flex; /* Enables the use of Flexbox for layout. */
+            justify-content: center; /* Centers the content horizontally. */
+            align-items: center; /* Centers the content vertically. */
+            height: 100vh; /* Sets the height of the body to be 100% of the viewport height. */
+        }
+        .container {
+            max-width: 600px; /* Maximum width of the container to constrain its content. */
+            text-align: center; /* Aligns text in the center of the container. */
+            background-color: rgba(255, 255, 255, 0.8); /* Sets the background color of the container with some transparency. */
+            padding: 20px; /* Adds padding inside the container. */
+            border-radius: 10px; /* Rounds the corners of the container. */
+        }
+        h1 {
+            font-size: 48px; /* Sets the font size of the <h1> element. */
+            margin-bottom: 30px; /* Adds space below the <h1> element. */
+        }
+        .btn-group {
+            margin-top: 20px; /* Adds space above the button group. */
+        }
+        .btn-group .btn {
+            margin: 0 5px; /* Adds horizontal margin to the buttons. */
+            font-size: 24px; /* Sets the font size of the buttons. */
+        }
+        table {
+            margin-top: 20px; /* Adds space above the table. */
+        }
+    </style>
+</head>
+<body> <!-- The <body> element contains the content of the HTML document that will be visible to users. -->
+    <div class="container">
+        <h1>Uploaded Database</h1>
+        <table class="table table-striped">  <!-- Table to display the uploaded files and provide actions to interact with them. -->
+            <thead>
+                <!-- Table header section to define column headings. -->
+                <tr>
+                    <th scope="col">File Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table body section to display the content. -->
+                {% for file in files %}
+                <!-- Loop through each file in the 'files' list passed from the Flask backend. -->
+                <tr>
+                    <td>{{ file }}</td> <!-- Displaying the file name. -->
+                    <td><a href="{{ url_for('view_database', filename1=file, filename2=file) }}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+         <!-- Button group for navigation. -->
+        <div class="btn-group">
+            <a href="/" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+</body>
+</html>

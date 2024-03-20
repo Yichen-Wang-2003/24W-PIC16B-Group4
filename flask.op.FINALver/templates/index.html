@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  <!-- Character set declaration to specify the character encoding for the HTML document. UTF-8 covers most characters and symbols in the world. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures that Internet Explorer uses the latest rendering engine to display the webpage. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport setting to ensure the page is responsive and scales correctly on different devices. -->
+    <title>Neural Network Models for Option Pricing Evaluation</title>    <!-- The title of the HTML document, shown in the browser's title bar or tab. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Link to Bootstrap CSS for styling the page with Bootstrap framework. -->
+    <style>
+        body {
+            background-color: #ADD8E6; /* Sets the background color of the webpage. */
+            padding-top: 20px; /* Adds space on the top of the body. */
+            display: flex; /* Uses Flexbox for layout to center the container vertically and horizontally. */
+            justify-content: center; /* Centers the container horizontally in the flex container. */
+            align-items: center; /* Centers the container vertically in the flex container. */
+            height: 100vh; /* Sets the body height to 100% of the viewport height. */
+        }
+        .container {
+            max-width: 800px; /* Sets the maximum width of the container. */
+            text-align: center; /* Centers the text inside the container. */
+            background-color: rgba(255, 255, 255, 0.8); /* Sets the background color of the container with some opacity. */
+            padding: 40px; /* Adds padding inside the container. */
+            border-radius: 20px; /* Rounds the corners of the container. */
+        }
+        .btn-group {
+            margin-top: 20px; /* Adds space above the button group. */
+            margin-bottom: 20px; /* Adds space below the button group. */
+        }
+        .btn-group .btn {
+            margin: 0 10px; /* Adds horizontal margin to each button. */
+            font-size: 36px; /* Increases the font size of the buttons. */
+        }
+        h2 {
+            font-size: 60px; /* Increases the font size of <h2> elements. */
+        }
+        p {
+            font-size: 28px; /* Increases the font size of paragraph <p> elements. */
+        }
+        .custom-file-label {
+            font-size: 24px; /* Increases the font size of the file input labels. */
+        }
+    </style>
+</head>
+<body>
+    <!-- The <body> element contains the content of the HTML document. -->
+    <div class="container">
+         <!-- .container class provides a centered wrapper for the content of the page. -->
+        <h1>Predictions of Intrinsic Value of Call Option</h1> <!-- Modify main title -->
+        <form method="POST" enctype="multipart/form-data"> <!-- Form for file upload with POST method to send file data to the server -->
+             <!-- .input-group and .custom-file provide styled file input fields -->
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                     <!-- File input for the first file with an id and name of 'file1' -->
+                    <input type="file" class="custom-file-input" id="file1" name="file1" required>
+                    <label class="custom-file-label" for="file1" id="file1-label">Upload X</label> <!-- Modify upload button text -->
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <!-- File input for the second file with an id and name of 'file2' -->
+                    <input type="file" class="custom-file-input" id="file2" name="file2" required>
+                    <label class="custom-file-label" for="file2" id="file2-label">Upload Y</label> <!-- Modify upload button text -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload & Save</button> <!-- Button to submit the form data for uploading files -->
+        </form>  <!-- Closing the form tag -->
+        <!-- Conditional block to display a success message if the upload was successful -->
+        {% if upload_success %}
+            <h2>Successful!</h2> <!-- Upload success message -->
+        {% endif %}
+
+        <!-- Section heading for actions -->
+        <h2>Actions</h2>
+        <!-- Button group for performing different actions like viewing data or predictions -->
+        <div class="btn-group" role="group" aria-label="Actions">
+            <!-- Link to view the database contents; 'btn-info' class for styling -->
+            <a href="{{ url_for('view_database') }}" class="btn btn-info">View Data</a> <!-- Modify button style -->
+            <!-- Link to view the prediction results; 'btn-info' class for styling -->
+            <a href="{{ url_for('show_prediction') }}" class="btn btn-info">View Prediction</a> <!-- Modify button style -->
+        </div>
+
+        <!-- Section for displaying evaluation results if predictions are available -->
+        <div>
+            {% if prediction is not none %}
+                <h2>Evaluation Results:</h2>
+                <!-- Display the value -->
+                <p>Test Loss: {{ test_loss }}</p>
+                <p>MSE Loss: {{ mse_loss }}</p>
+                <p>RMSE Loss: {{ rmse_loss }}</p>
+                <p>R2 Score: {{ r2_score }}</p>
+                <iframe src="{{ plot }}" width="100%" height="500px"></iframe>
+                <!-- Embedded iframe to display a plot, dynamically sourced from the 'plot' variable -->
+            {% endif %}
+        </div>
+
+        <!-- Section for displaying database content or prediction results -->
+        <div>
+            {% if view_database %}
+                <h2>Database Contents:</h2>
+                <!-- Database content goes here -->
+            {% endif %}
+            {% if show_prediction %}
+                <h2>Prediction Results:</h2>
+                <!-- Prediction results go here -->
+            {% endif %}
+        </div>
+    </div>  <!-- Closing div for the container -->
+
+    <!-- JavaScript to update the file input label with the selected file's name -->
+    <script>
+        // JavaScript code to change label text to file name after successful file upload
+        document.getElementById('file1').addEventListener('change', function() {
+            var fileName = this.files[0].name; // Get the name of the uploaded file
+            document.getElementById('file1-label').innerText = fileName;  // Set the label text to the file name
+        });
+
+        document.getElementById('file2').addEventListener('change', function() {
+            var fileName = this.files[0].name; // Get the name of the uploaded file
+            document.getElementById('file2-label').innerText = fileName;  // Set the label text to the file name
+        });
+        
+    </script>
+</body>
+</html>
