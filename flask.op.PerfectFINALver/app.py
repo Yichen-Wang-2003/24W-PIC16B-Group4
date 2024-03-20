@@ -68,8 +68,7 @@ app.secret_key = os.environ.get('SECRET_KEY') or 'fallback_key'
 """
 Sets the secret key for the Flask application, which is used to maintain sessions and other 
 security features. It tries to get the key from an environment variable `SECRET_KEY`; 
-if not found, it defaults to 'fallback_key'. It's crucial for the key to be secret and 
-complex in a production environment to ensure security.
+if not found, it defaults to 'fallback_key'. 
 """
 # Ensure the upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
