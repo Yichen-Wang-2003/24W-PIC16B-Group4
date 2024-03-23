@@ -10,6 +10,8 @@ In this project, we aim to use one-dimension convolutional neural network to pre
 
 The whole project contains three parts: Data preprocessing, CNN model construction and result analysis, and Flask Web Application creation. We first utilize the API and Yahoo Finance to get rudimentary data, do systematic data preprocessing, and then construct the 1D CNN model to predict the option price. Finally, we create a web application to visualize the result using Flask.
 
+For data preprocessing part, the data source is [https://www.optionsdx.com/product/spy-option-chains/] and yfinance api for python. For CNN construction and training, please refer to the blog post for more details. The flask web app instructions are kind of complex, so the procedures are attached below.
+
 # Flask Web App Instructions
 
 This guide will help you set up and run the Flask web application for our project. Follow the steps below to get started.
